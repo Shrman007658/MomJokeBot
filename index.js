@@ -24,6 +24,15 @@ for (const file of commandFiles) {
 	bot.commands.set(command.name, command);
 }
 
+bot.on('guildMemberAdd', member => {
+    // Send the message to a designated channel on a server:
+    const channel = member.guild.channels.cache.find(ch => ch.name === 'member-log');
+    // Do nothing if the channel wasn't found on this server
+    if (!channel) return;
+    // Send the message, mentioning the member
+    channel.send(`Welcome to the server, ${member}`);
+  });
+
 bot.on('ready',()=>
 {
     console.log(`Logged in as ${bot.user.tag} :)`); 
