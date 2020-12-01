@@ -1,13 +1,13 @@
 const fs = require('fs')
 const discord = require('discord.js');
 const { log } = require('console');
+const { addListener } = require('process');
 
 require('dotenv').config();
 
 const TOKEN=process.env.TOKEN;
 const MASTER=process.env.MASTER;
 
-console.log(TOKEN);
 const bot=new discord.Client();
 
 bot.commands=new discord.Collection();
@@ -49,18 +49,18 @@ bot.on('message',(msg)=>
        
        commandlist=command.split(' ');
        actualcommand=commandlist[0];
-
+       const args = msg.content.slice(prefix.length).trim().split(/ +/);
 
        if(commandFiles.includes(actualcommand+'.js'))
         {
             msg.react('👁');
-            bot.commands.get(actualcommand).execute(msg);   
+            bot.commands.get(actualcommand).execute(msg,args);   
         }
         else
         {
             msg.react('😧');
             msg.reply('Sorry We couldnt find your command. try again maybe?');
-            msg.reply('Or you can even talk to faking_reality, my master, to implement that in me 🙂');
+            msg.reply('Or you can even talk to faking_reality, my master, to implement that in me 🙂');            
         }
     }
 })
