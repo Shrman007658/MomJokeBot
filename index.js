@@ -6,7 +6,6 @@ const { addListener } = require('process');
 require('dotenv').config();
 
 const TOKEN=process.env.TOKEN;
-const MASTER=process.env.MASTER;
 
 const bot=new discord.Client();
 
@@ -23,6 +22,7 @@ for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	bot.commands.set(command.name, command);
 }
+
 
 bot.on('guildMemberAdd', member => {
     // Send the message to a designated channel on a server:
