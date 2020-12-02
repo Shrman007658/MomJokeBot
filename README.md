@@ -1,4 +1,4 @@
-# Basic Discord Bot Boilerplate
+# Very Simple yet Powerful Mom Joke Discord Bot. 
 This is a discord bot. 
 
 ## Prefix
